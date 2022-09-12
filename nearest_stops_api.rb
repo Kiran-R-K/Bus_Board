@@ -27,7 +27,6 @@ class NearestStopAPI
     for stop in stops do
       @stop_point_ids << stop["naptanId"]
     end
-    puts @stop_point_ids
   end
 
 end

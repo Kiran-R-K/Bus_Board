@@ -15,8 +15,6 @@ class BusBoard
     puts "please input the postcode you want to search near"
     postcode = gets.chomp.delete(' ')
     postcode_info = PostcodeAPI.new(postcode)
-    puts postcode_info.postcode_longitude
-    puts postcode_info.postcode_latitude
     find_nearest_bus_stops(postcode_info.postcode_longitude,postcode_info.postcode_latitude)
   end
 
