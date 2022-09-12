@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 
 class NearestStopAPI
-  attr_reader :stop_point_ids
+  attr_reader :stop_point_one, :stop_point_two
 
   def initialize(longitude, latitude)
     find_near_stops(longitude, latitude)
@@ -17,16 +17,9 @@ class NearestStopAPI
   end
 
   def sort_stops_by_nearest(data)
-    sorted_stop_points = data["stopPoints"].sort_by { |stop| stop["distance"] }
-    nearest_stops = sorted_stop_points[0..1]
-    stop_point_id(nearest_stops)
-  end
-
-  def stop_point_id(stops)
-    @stop_point_ids = []
-    for stop in stops do
-      @stop_point_ids << stop["naptanId"]
-    end
+    data["stopPoints"].sort_by { |stop| stop["distance"] }
+    @stop_point_one =  data['stopPoints'][0]['children'][1]['naptanId']
+    @stop_point_two =  data['stopPoints'][1]['children'][1]['naptanId']
   end
 
 end

@@ -4,12 +4,7 @@ require './nearest_stops_api.rb'
 
 
 class BusBoard
-  attr_reader :bus_arrival_api, :postcode_api
 
-  def initialize
-    @bus_arrival_api = TflBusArrivalAPI.new
-    # for testing: bus_arrival_api.request_data('490008660N')
-  end
 
   def start
     puts "please input the postcode you want to search near"
@@ -19,7 +14,13 @@ class BusBoard
   end
 
   def find_nearest_bus_stops(longitude, latitude)
-    nearest_stop = NearestStopAPI.new(longitude,latitude)
+    nearest_stops = NearestStopAPI.new(longitude,latitude)
+    display_bus_arrivals(nearest_stops.stop_point_one)
+    display_bus_arrivals(nearest_stops.stop_point_two)
+  end
+
+  def display_bus_arrivals(stop_id)
+    TflBusArrivalAPI.new(stop_id)
   end
 
 

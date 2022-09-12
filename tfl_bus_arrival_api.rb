@@ -3,6 +3,10 @@ require 'json'
 
 class TflBusArrivalAPI
 
+  def initialize(stop_id)
+    request_data(stop_id)
+  end
+
 
   def request_data(bus_stop_id)
     url = "https://api.tfl.gov.uk/StopPoint/#{bus_stop_id}/Arrivals"
