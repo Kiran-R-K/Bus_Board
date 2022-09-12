@@ -3,7 +3,8 @@ require 'json'
 
 class TflBusArrivalAPI
 
-  def initialize(stop_id)
+  def initialize(stop_id, stop_name)
+    @stop_name = stop_name
     request_data(stop_id)
   end
 
@@ -22,6 +23,7 @@ class TflBusArrivalAPI
   end
 
   def display_bus_arrivals(busses_arriving)
+    puts "#{@stop_name} bus stop:"
     for bus in busses_arriving do
       arrival_time = bus["timeToStation"]/60
       puts "Bus: #{bus["lineId"]} | Destination: #{bus["destinationName"]} | Arriving in: #{arrival_time}mins"

@@ -15,12 +15,12 @@ class BusBoard
 
   def find_nearest_bus_stops(longitude, latitude)
     nearest_stops = NearestStopAPI.new(longitude,latitude)
-    display_bus_arrivals(nearest_stops.stop_point_one)
-    display_bus_arrivals(nearest_stops.stop_point_two)
+    display_bus_arrivals(nearest_stops.stop_point_one, nearest_stops.stop_point_one_name)
+    display_bus_arrivals(nearest_stops.stop_point_two, nearest_stops.stop_point_two_name)
   end
 
-  def display_bus_arrivals(stop_id)
-    TflBusArrivalAPI.new(stop_id)
+  def display_bus_arrivals(stop_id,stop_name)
+    TflBusArrivalAPI.new(stop_id, stop_name)
   end
 
 
